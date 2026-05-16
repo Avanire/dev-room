@@ -2,19 +2,17 @@ import {Html} from '@react-three/drei'
 import {animated, useSpring} from '@react-spring/web'
 import {usePlayerStore} from 'entities/Player/model/usePlayerStore'
 import {roomConfig} from 'shared/config/roomConfig'
+import {COLORS} from 'shared/config/retroFutureTheme'
 
 export const SpeechBubble = () => {
     const dialogData = usePlayerStore((s) => s.dialogData)
     const activeId = usePlayerStore((s) => s.activeInteractableId)
-
-    // Находим объект, чтобы получить его позицию для привязки бабла
     const activeObject = roomConfig.objects.find((o) => o.id === activeId)
 
-    // Анимация появления/исчезновения
     const styles = useSpring({
         opacity: dialogData ? 1 : 0,
-        transform: dialogData ? 'scale(1)' : 'scale(0.8)',
-        config: { tension: 300, friction: 20 },
+        transform: dialogData ? 'scale(1)' : 'scale(0.9)',
+        config: { tension: 200, friction: 20 },
     })
 
     if (!activeObject || !dialogData) return null
@@ -30,74 +28,66 @@ export const SpeechBubble = () => {
             <animated.div
                 style={{
                     ...styles,
-                    background: '#fff',
-                    border: '4px solid #2d3436',
-                    borderRadius: '8px',
-                    padding: '12px 16px',
-                    maxWidth: '280px',
-                    fontFamily: '"Press Start 2P", monospace',
+                    background: 'rgba(10, 10, 26, 0.85)',
+                    border: `2px solid ${COLORS.neonCyan}`,
+                    borderRadius: '6px',
+                    padding: '14px 18px',
+                    maxWidth: '300px',
+                    fontFamily: '"Orbitron", sans-serif',
                     fontSize: '10px',
-                    lineHeight: '1.6',
-                    color: '#2d3436',
-                    boxShadow: '6px 6px 0 #2d3436',
+                    lineHeight: '1.5',
+                    color: COLORS.text,
+                    boxShadow: `0 0 15px ${COLORS.neonCyan}44, inset 0 0 10px ${COLORS.neonCyan}22`,
+                    backdropFilter: 'blur(4px)',
                     position: 'relative',
                 }}
             >
-                {/* Хвостик бабла */}
+                {/* Хвостик-указатель */}
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: '-16px',
+                        bottom: '-10px',
                         left: '50%',
                         transform: 'translateX(-50%)',
                         width: 0,
                         height: 0,
-                        borderLeft: '10px solid transparent',
-                        borderRight: '10px solid transparent',
-                        borderTop: '12px solid #fff',
-                        zIndex: 1,
-                    }}
-                />
-                <div
-                    style={{
-                        position: 'absolute',
-                        bottom: '-22px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: 0,
-                        height: 0,
-                        borderLeft: '12px solid transparent',
-                        borderRight: '12px solid transparent',
-                        borderTop: '14px solid #2d3436',
+                        borderLeft: '8px solid transparent',
+                        borderRight: '8px solid transparent',
+                        borderTop: `10px solid ${COLORS.neonCyan}`,
                     }}
                 />
 
-                <h3 style={{ margin: '0 0 8px', fontSize: '11px', fontWeight: 'bold' }}>
+                <h3
+                    style={{
+                        margin: '0 0 8px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        color: COLORS.neonCyan,
+                        textShadow: `0 0 8px ${COLORS.neonCyan}`,
+                    }}
+                >
                     {dialogData.title}
                 </h3>
                 <p style={{ margin: '0 0 8px', whiteSpace: 'pre-wrap' }}>
                     {dialogData.text}
                 </p>
-                {dialogData.links && dialogData.links.length > 0 && (
-                    <div>
-                        {dialogData.links.map((link, i) => (
-                            <a
-                                key={i}
-                                href={link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                    display: 'block',
-                                    color: '#0984e3',
-                                    fontSize: '9px',
-                                    wordBreak: 'break-all',
-                                }}
-                            >
-                                {link}
-                            </a>
-                        ))}
-                    </div>
-                )}
+                {dialogData.links?.map((link, i) => (
+                    <a
+                        key={i}
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            display: 'block',
+                            color: COLORS.neonMagenta,
+                            fontSize: '9px',
+                            wordBreak: 'break-all',
+                            textShadow: `0 0 5px ${COLORS.neonMagenta}`,
+                        }}
+                    >
+                        {link}
+                    </a>
+                ))}
             </animated.div>
         </Html>
     )
