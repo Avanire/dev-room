@@ -21,7 +21,7 @@ export const NeonSign3D = () => {
             />
             <NeonText
                 text={'ANTON\n TATARINOV'}
-                position={[-4, 1.2, -4.7]}
+                position={[-3.7, 1.2, -4.7]}
                 emissiveColor={COLORS.yellowCyberpunk}
                 powerOn={powerOn}
             />
@@ -33,7 +33,14 @@ export const NeonSign3D = () => {
             />
             <NeonText
                 text="ABOUT ME"
-                position={[0, 2.3, -4.89]}
+                position={[0, 2, -4.89]}
+                emissiveColor={COLORS.neonGreen}
+                powerOn={powerOn}
+            />
+            <NeonText
+                text="EXPERIENCE"
+                position={[-4.7, 2.6, 1]}
+                rotation={[0, Math.PI / 2, 0]}
                 emissiveColor={COLORS.neonGreen}
                 powerOn={powerOn}
             />
