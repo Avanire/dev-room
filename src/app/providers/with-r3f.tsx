@@ -11,8 +11,8 @@ export const WithR3F = ({ children }: WithR3FProps) => {
     return (
         <Canvas
             camera={{
-                position: [8, 8, 8],
-                fov: 35,
+                position: [12, 12, 12],
+                fov: 40,
                 near: 0.1,
                 far: 50,
             }}

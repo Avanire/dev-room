@@ -6,6 +6,7 @@ import {InteractableObject} from 'entities/Interactable/ui/InteractableObject'
 import {roomConfig} from 'shared/config/roomConfig'
 import {COLORS} from 'shared/config/retroFutureTheme'
 import {NeonSign3D} from "widgets/NeonSign/ui/NeonSign3D.tsx";
+import {RoomDecoration} from "entities/Room/ui/RoomDecoration.tsx";
 
 export const DevRoom = () => {
     useKeyboard()
@@ -36,6 +37,7 @@ export const DevRoom = () => {
             />
 
             <Room />
+            <RoomDecoration />
             {roomConfig.objects.map((obj) => (
                 <InteractableObject key={obj.id} config={obj} />
             ))}
