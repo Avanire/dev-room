@@ -5,6 +5,7 @@ import {useProximityCheck} from 'features/Interaction/lib/checkProximity'
 import {InteractableObject} from 'entities/Interactable/ui/InteractableObject'
 import {roomConfig} from 'shared/config/roomConfig'
 import {COLORS} from 'shared/config/retroFutureTheme'
+import {NeonSign3D} from "widgets/NeonSign/ui/NeonSign3D.tsx";
 
 export const DevRoom = () => {
     useKeyboard()
@@ -38,6 +39,7 @@ export const DevRoom = () => {
             {roomConfig.objects.map((obj) => (
                 <InteractableObject key={obj.id} config={obj} />
             ))}
+            <NeonSign3D />
             <PlayerModel />
         </>
     )

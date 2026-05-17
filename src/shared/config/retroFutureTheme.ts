@@ -5,6 +5,7 @@ export const COLORS = {
     metalLight: '#4a4a7a',
     neonCyan: '#00f0ff',
     neonMagenta: '#ff00aa',
+    yellowCyberpunk : '#FFCC00',
     neonGreen: '#00ff88',
     neonOrange: '#ff8800',
     emissiveCyan: '#004466',
