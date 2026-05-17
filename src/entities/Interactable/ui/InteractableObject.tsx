@@ -85,36 +85,45 @@ export const InteractableObject = ({ config }: Props) => {
                         ))}
                     </group>
                 )
-            case 'bookshelf':
+            case 'bookshelf': {
+                const shelfLevels = [0.35, 0.7, 1.05];
+                const booksConfig: Array<Array<[number, number, number, number, string]>> = [
+                    [[-0.35, 0.08, 0.26, 0.22, COLORS.bookTwo], [-0.2, 0.05, 0.18, 0.18, COLORS.bookOne], [-0.1, 0.06, 0.2, 0.2, COLORS.bookThree]],
+                    [[0.42, 0.07, 0.28, 0.25, COLORS.bookOne], [0.3, 0.05, 0.2, 0.2, COLORS.bookThree], [0.2, 0.06, 0.22, 0.22, COLORS.bookTwo], [0.1, 0.05, 0.2, 0.2, COLORS.bookThree], [0, 0.06, 0.22, 0.22, COLORS.bookTwo]],
+                ];
+
                 return (
-                    <group position={[x, y, z]}>
-                        <Box args={[1.2, 1.2, 0.4]}>
-                            <meshStandardMaterial
-                                color={COLORS.darkPanel}
-                                roughness={0.5}
-                                metalness={0.6}
-                            />
+                    <group position={[x, y, z]} rotation={[0, Math.PI / 2, 0]}>
+                        {/* Боковые стенки */}
+                        <Box args={[0.1, 1.2, 0.4]} position={[-0.55, 0, 0]}>
+                            <meshBasicMaterial color={COLORS.emissiveMagenta} />
                         </Box>
-                        {/* Полки и светящиеся ячейки */}
-                        {[0, 0.3, -0.3].map((dx, i) => (
-                            <Box
-                                key={i}
-                                args={[0.15, 0.3, 0.3]}
-                                position={[dx, 0, 0]}
-                            >
-                                <meshStandardMaterial
-                                    color={i % 2 === 0 ? COLORS.neonCyan : COLORS.neonMagenta}
-                                    emissive={
-                                        i % 2 === 0 ? COLORS.neonCyan : COLORS.neonMagenta
-                                    }
-                                    emissiveIntensity={0.5}
-                                    transparent
-                                    opacity={0.9}
-                                />
+                        <Box args={[0.1, 1.2, 0.4]} position={[0.55, 0, 0]}>
+                            <meshBasicMaterial color={COLORS.emissiveMagenta} />
+                        </Box>
+
+                        {/* Полки */}
+                        {shelfLevels.map((h, i) => (
+                            <Box key={i} args={[1.0, 0.04, 0.4]} position={[0, h - 0.5, 0]}>
+                                <meshBasicMaterial color={COLORS.metalLight} />
                             </Box>
                         ))}
+
+                        {/* Книги по уровням */}
+                        {shelfLevels.map((levelHeight, levelIndex) =>
+                            booksConfig[levelIndex]?.map(([offsetX, thickness, height, depth, color], bookIndex) => (
+                                <Box
+                                    key={`book-${levelIndex}-${bookIndex}`}
+                                    args={[thickness, height, depth]}
+                                    position={[offsetX, levelHeight - 0.5 + height / 2, 0]}
+                                >
+                                    <meshBasicMaterial color={color} />
+                                </Box>
+                            ))
+                        )}
                     </group>
-                )
+                );
+            }
             case 'whiteboard':
                 return (
                     <group position={[x, y, z]}>

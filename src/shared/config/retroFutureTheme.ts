@@ -12,6 +12,10 @@ export const COLORS = {
     emissiveMagenta: '#440044',
     hologram: '#aaccff',
     text: '#cceeff',
+    woodDark: '#3e2723',
+    bookOne: '#6B4E3A',
+    bookTwo: '#4F6B5E',
+    bookThree: '#7A5A6B',
     // Мебельные поверхности
     surfaceLight: '#c8d8e8',   // светлая металлическая (столешница, рамки)
     surfaceLighter: '#d0dce4', // ещё светлее (подставка монитора)

@@ -79,5 +79,17 @@ export const roomConfig = {
                     'При создании проектной работы, понял, что создавать удобный и отзывчивый интерфейс мне нравится больше, чем делать backend, поэтому я выбрал как основную специализацию Frontend на библиотеке React.',
             },
         },
+        {
+            id: 'bookshelf',
+            type: 'bookshelf',
+            position: [-4.8, 1, 1],
+            radius: 1.5,
+            dialog: {
+                title: 'Опыт работы',
+                text: 'Frontend-разработчик Сбер\n' +
+                    'Fullstack developer ITB Company\n' +
+                    'Мидл фронтенд-разработчик Яндекс.Практикум'
+            }
+        },
     ] as InteractableConfig[],
 }
