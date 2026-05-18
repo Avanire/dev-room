@@ -1,5 +1,7 @@
 import {Box, Cylinder} from '@react-three/drei'
 import {COLORS} from 'shared/config/retroFutureTheme'
+import Sofa from "entities/Room/ui/Sofa.tsx";
+import CyberLamp from "entities/Room/ui/CyberLamp.tsx";
 
 export const RoomDecoration = () => {
     return (
@@ -36,92 +38,11 @@ export const RoomDecoration = () => {
                 </Box>
             </group>
 
-            {/* Большие колонны по углам */}
-            <group position={[1.2, -0.5, -4.5]}>
-                <Cylinder args={[0.3, 0.3, 3, 16]}>
-                    <meshStandardMaterial
-                        color="#f0f4fa"
-                        roughness={0.2}
-                        metalness={0.6}
-                    />
-                </Cylinder>
-                <Cylinder args={[0.35, 0.35, 0.1, 16]} position={[0, 1.4, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.neonCyan}
-                        emissive={COLORS.neonCyan}
-                        emissiveIntensity={0.6}
-                    />
-                </Cylinder>
-            </group>
-
-            <group position={[5.5, 0.5, 4.5]}>
-                <Cylinder args={[0.3, 0.3, 1, 16]}>
-                    <meshStandardMaterial
-                        color="#f0f4fa"
-                        roughness={0.2}
-                        metalness={0.6}
-                    />
-                </Cylinder>
-                <Cylinder args={[0.35, 0.35, 0.1, 16]} position={[0, 0.4, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.neonMagenta}
-                        emissive={COLORS.neonMagenta}
-                        emissiveIntensity={0.6}
-                    />
-                </Cylinder>
-            </group>
+            {/* Лампа */}
+            <CyberLamp x={5} y={1.3} z={4.3} />
 
             {/* Диван */}
-            <group position={[-1, 0.3, 4.7]} rotation={[0, Math.PI, 0]}>
-                {/* Основание */}
-                <Box args={[2.2, 0.4, 0.9]} position={[0, 0.2, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.surfaceLight}
-                        roughness={0.3}
-                        metalness={0.7}
-                    />
-                </Box>
-                {/* Спинка */}
-                <Box args={[2.2, 0.55, 0.2]} position={[0, 0.55, -0.35]}>
-                    <meshStandardMaterial
-                        color={COLORS.surfaceLight}
-                        roughness={0.3}
-                        metalness={0.7}
-                    />
-                </Box>
-                {/* Левый подлокотник */}
-                <Box args={[0.2, 0.4, 0.9]} position={[-1.0, 0.4, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.surfaceLighter}
-                        roughness={0.3}
-                        metalness={0.7}
-                    />
-                </Box>
-                {/* Правый подлокотник */}
-                <Box args={[0.2, 0.4, 0.9]} position={[1.0, 0.4, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.surfaceLighter}
-                        roughness={0.3}
-                        metalness={0.7}
-                    />
-                </Box>
-                {/* Неоновая полоса по периметру спинки */}
-                <Box args={[2.4, 0.05, 0.05]} position={[0, 0.85, -0.44]}>
-                    <meshStandardMaterial
-                        color={COLORS.neonCyan}
-                        emissive={COLORS.neonCyan}
-                        emissiveIntensity={0.8}
-                    />
-                </Box>
-                {/* Подушка */}
-                <Box args={[1.8, 0.1, 0.7]} position={[0, 0.45, 0.05]}>
-                    <meshStandardMaterial
-                        color="#dfe6e9"
-                        roughness={0.7}
-                        metalness={0.1}
-                    />
-                </Box>
-            </group>
+            <Sofa x={-1} y={0.3} z={4.7} rotation={[0, Math.PI, 0]} />
 
             {/* Журнальный столик перед диваном */}
             <group position={[-1.3, 0.2, 2.9]}>
