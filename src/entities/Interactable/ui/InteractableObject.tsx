@@ -1,6 +1,8 @@
 import {Box, Cylinder} from '@react-three/drei'
 import {InteractableConfig} from 'shared/config/roomConfig'
 import {COLORS} from 'shared/config/retroFutureTheme'
+import ArcadeMachine from "entities/Interactable/ui/ArcadeMachine.tsx";
+
 
 interface Props {
     config: InteractableConfig
@@ -140,98 +142,7 @@ export const InteractableObject = ({ config }: Props) => {
                     </group>
                 )
             case 'arcade':
-                return (
-                    <group position={[x, y, z]} rotation={[0, -Math.PI / 2, 0]}>
-                        {/* Корпус: светлый металлик с лёгкой голубой подсветкой */}
-                        <Box args={[1.0, 1.4, 0.8]} position={[0, 0.5, 0]}>
-                            <meshStandardMaterial
-                                color={COLORS.surfaceLight}   // #c8d8e8
-                                emissive={COLORS.emissiveCyan}
-                                emissiveIntensity={0.25}
-                                roughness={0.3}
-                                metalness={0.7}
-                            />
-                        </Box>
-
-                        {/* Экранная рамка (металлик потемнее) */}
-                        <Box args={[0.84, 0.54, 0.06]} position={[0, 1.1, -0.38]}>
-                            <meshStandardMaterial
-                                color={COLORS.metalLight}      // #4a4a7a
-                                roughness={0.3}
-                                metalness={0.9}
-                            />
-                        </Box>
-
-                        {/* Голографический экран */}
-                        <Box args={[0.74, 0.44, 0.03]} position={[0, 1.1, -0.36]}>
-                            <meshStandardMaterial
-                                color={COLORS.hologram}
-                                emissive={COLORS.neonCyan}
-                                emissiveIntensity={0.9}
-                                roughness={0.2}
-                                metalness={0.1}
-                                transparent
-                                opacity={0.95}
-                            />
-                        </Box>
-
-                        {/* Панель управления — контрастная, очень тёмная */}
-                        <Box args={[0.9, 0.12, 0.35]} position={[0, 0.4, -0.35]}>
-                            <meshStandardMaterial
-                                color="#0a0a1a"
-                                roughness={0.3}
-                                metalness={0.9}
-                            />
-                        </Box>
-
-                        {/* Яркие кнопки */}
-                        {[[-0.3, 0.4, -0.2], [0, 0.4, -0.2], [0.3, 0.4, -0.2]].map((pos, i) => (
-                            <Cylinder key={i} args={[0.06, 0.06, 0.03, 16]} position={[pos[0], pos[1], pos[2]]}>
-                                <meshStandardMaterial
-                                    color={i === 0 ? COLORS.neonMagenta : i === 1 ? COLORS.neonCyan : COLORS.neonGreen}
-                                    emissive={i === 0 ? COLORS.neonMagenta : i === 1 ? COLORS.neonCyan : COLORS.neonGreen}
-                                    emissiveIntensity={1.2}
-                                    roughness={0.2}
-                                    metalness={0.1}
-                                />
-                            </Cylinder>
-                        ))}
-
-                        {/* Джойстик */}
-                        <Cylinder args={[0.08, 0.1, 0.06, 8]} position={[-0.4, 0.45, -0.35]}>
-                            <meshStandardMaterial color={COLORS.metalLight} roughness={0.3} metalness={0.9} />
-                        </Cylinder>
-                        <Cylinder args={[0.03, 0.03, 0.35, 8]} position={[-0.4, 0.65, -0.35]} rotation={[0.2, 0, 0]}>
-                            <meshStandardMaterial color={COLORS.surfaceLight} roughness={0.3} metalness={0.8} />
-                        </Cylinder>
-                        <mesh position={[-0.4, 0.83, -0.35]}>
-                            <sphereGeometry args={[0.06, 8, 8]} />
-                            <meshStandardMaterial
-                                color={COLORS.neonMagenta}
-                                emissive={COLORS.neonMagenta}
-                                emissiveIntensity={0.9}
-                            />
-                        </mesh>
-
-                        {/* Декоративные неоновые полосы по краям */}
-                        <Box args={[1.02, 0.05, 0.05]} position={[0, 0.9, -0.42]}>
-                            <meshStandardMaterial
-                                color={COLORS.neonCyan}
-                                emissive={COLORS.neonCyan}
-                                emissiveIntensity={0.7}
-                                roughness={0.2}
-                            />
-                        </Box>
-                        <Box args={[1.02, 0.05, 0.05]} position={[0, 0.1, -0.42]}>
-                            <meshStandardMaterial
-                                color={COLORS.neonMagenta}
-                                emissive={COLORS.neonMagenta}
-                                emissiveIntensity={0.7}
-                                roughness={0.2}
-                            />
-                        </Box>
-                    </group>
-                )
+                return <ArcadeMachine position={[x, y, z]} />;
             default:
                 return null
         }
