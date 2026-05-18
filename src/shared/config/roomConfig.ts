@@ -19,7 +19,7 @@ export const roomConfig = {
         {
             id: 'frame_1',
             type: 'frame',
-            position: [5.5, -4.9, 2],
+            position: [5.5, -4.8, 1.7],
             radius: 1.5,
             dialog: {
                 title: 'JavaScript',
@@ -29,7 +29,7 @@ export const roomConfig = {
         {
             id: 'frame_2',
             type: 'frame',
-            position: [4.6, -4.9, 1.6],
+            position: [4.6, -4.8, 1.4],
             radius: 1.5,
             dialog: {
                 title: 'HTML / CSS',
@@ -39,7 +39,7 @@ export const roomConfig = {
         {
             id: 'frame_3',
             type: 'frame',
-            position: [3.6, -4.9, 1.7],
+            position: [3.6, -4.8, 1.5],
             radius: 1.5,
             dialog: {
                 title: 'React',
@@ -49,7 +49,7 @@ export const roomConfig = {
         {
             id: 'frame_4',
             type: 'frame',
-            position: [2.6, -4.9, 1.5],
+            position: [2.6, -4.8, 1.3],
             radius: 1.5,
             dialog: {
                 title: 'Git',

@@ -1,8 +1,8 @@
 import {InteractableConfig} from 'shared/config/roomConfig'
-import {COLORS} from 'shared/config/retroFutureTheme'
 import ArcadeMachine from "entities/Interactable/ui/ArcadeMachine.tsx";
 import Bookshelf from "entities/Interactable/ui/Bookshelf.tsx";
 import Desk from "entities/Interactable/ui/Desk.tsx";
+import DiplomaFrame from "entities/Interactable/ui/DiplomaFrame.tsx";
 
 
 interface Props {
@@ -20,31 +20,7 @@ export const InteractableObject = ({ config }: Props) => {
             case 'desk':
                 return <Desk x={x} y={y} z={z} />;
             case 'frame':
-                return (
-                    <group position={[x, y, z]}>
-                        {/* Внешняя рамка */}
-                        <mesh>
-                            <boxGeometry args={[0.7, 0.6, 0.05]} />
-                            <meshStandardMaterial
-                                color={COLORS.surfaceLight}
-                                roughness={0.3}
-                                metalness={0.7}
-                            />
-                        </mesh>
-                        {/* Диплом (голографический лист) */}
-                        <mesh position={[0, 0, 0.03]}>
-                            <planeGeometry args={[0.5, 0.4]} />
-                            <meshStandardMaterial
-                                color={COLORS.hologram}
-                                emissive={COLORS.neonCyan}
-                                emissiveIntensity={0.5}
-                                roughness={0.2}
-                                metalness={0.2}
-                                side={2}
-                            />
-                        </mesh>
-                    </group>
-                )
+                return <DiplomaFrame x={x} y={y} z={z} rotation={[0, 0, 0]} />;
             case 'arcade':
                 return <ArcadeMachine position={[x, y, z]} />;
             default:

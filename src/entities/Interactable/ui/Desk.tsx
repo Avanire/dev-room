@@ -44,6 +44,8 @@ function useMonitorTexture() {
         drawMonitorFrame(clock.elapsedTime)
         textureRef.current.needsUpdate = true
     })
+
+    // eslint-disable-next-line react-hooks/refs
     return textureRef.current
 }
 
