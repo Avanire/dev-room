@@ -44,6 +44,13 @@ export const NeonSign3D = () => {
                 emissiveColor={COLORS.neonGreen}
                 powerOn={powerOn}
             />
+            <NeonText
+                text="CONTACT ME"
+                position={[-4.9, 2.4, 4]}
+                rotation={[0, Math.PI / 2, 0]}
+                emissiveColor={COLORS.hologram}
+                powerOn={powerOn}
+            />
         </>
     )
 }

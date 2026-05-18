@@ -2,11 +2,12 @@ export interface DialogData {
     title: string
     text: string
     links?: string[]
+    type?: 'contact'
 }
 
 export interface InteractableConfig {
     id: string
-    type: 'monitor' | 'server' | 'bookshelf' | 'whiteboard' | 'laptop' | 'frame' | 'window' | 'desk'
+    type: 'monitor' | 'server' | 'bookshelf' | 'whiteboard' | 'laptop' | 'frame' | 'window' | 'desk' | 'arcade'
     position: [number, number, number]
     radius: number
     dialog: DialogData
@@ -91,5 +92,15 @@ export const roomConfig = {
                     'Мидл фронтенд-разработчик Яндекс.Практикум'
             }
         },
+        {
+            id: 'arcade_contact',
+            type: 'arcade',
+            position: [-5.4, 3.5, 0.2],
+            radius: 1.8,
+            dialog: {
+                title: 'Связаться со мной',
+                type: 'contact'
+            }
+        }
     ] as InteractableConfig[],
 }

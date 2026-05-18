@@ -4,7 +4,7 @@ import {COLORS} from 'shared/config/retroFutureTheme'
 export const RoomDecoration = () => {
     return (
         <group>
-            {/* Голографическая картина на левой стене */}
+            {/* Голографическая картина на правой стене */}
             <group position={[-2, 1.7, -4.9]} rotation={[0, -Math.PI / 2, 0]}>
                 <Box args={[0.05, 1.2, 0.8]} position={[0, 0, 0]}>
                     <meshStandardMaterial color={COLORS.metalLight} roughness={0.3} metalness={0.7} />
@@ -21,7 +21,7 @@ export const RoomDecoration = () => {
             </group>
 
             {/* Голографическая картина на левой стене */}
-            <group position={[-5.8, 1.6, 3]}>
+            <group position={[2.8, 1.6, 4.9]} rotation={[0, Math.PI / 2, 0]}>
                 <Box args={[0.05, 1.2, 0.8]} position={[0, 0, 0]}>
                     <meshStandardMaterial color={COLORS.metalLight} roughness={0.3} metalness={0.7} />
                 </Box>
@@ -54,7 +54,7 @@ export const RoomDecoration = () => {
                 </Cylinder>
             </group>
 
-            <group position={[-5.5, 0.5, 4.5]}>
+            <group position={[5.5, 0.5, 4.5]}>
                 <Cylinder args={[0.3, 0.3, 1, 16]}>
                     <meshStandardMaterial
                         color="#f0f4fa"
@@ -72,7 +72,7 @@ export const RoomDecoration = () => {
             </group>
 
             {/* Диван */}
-            <group position={[-3, 0.3, 4.7]} rotation={[0, Math.PI, 0]}>
+            <group position={[-1, 0.3, 4.7]} rotation={[0, Math.PI, 0]}>
                 {/* Основание */}
                 <Box args={[2.2, 0.4, 0.9]} position={[0, 0.2, 0]}>
                     <meshStandardMaterial
@@ -124,7 +124,7 @@ export const RoomDecoration = () => {
             </group>
 
             {/* Журнальный столик перед диваном */}
-            <group position={[-3.3, 0.2, 2.9]}>
+            <group position={[-1.3, 0.2, 2.9]}>
                 {/* Ножки (4 шт.) */}
                 {[[-0.7, 0, -0.35], [0.7, 0, -0.35], [-0.7, 0, 0.35], [0.7, 0, 0.35]].map((pos, i) => (
                     <Cylinder key={i} args={[0.04, 0.06, 0.4, 8]} position={[pos[0], pos[1], pos[2]]}>

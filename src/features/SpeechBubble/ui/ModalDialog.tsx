@@ -1,6 +1,7 @@
 import {animated, useSpring} from '@react-spring/web'
 import {usePlayerStore} from 'entities/Player/model/usePlayerStore'
 import {COLORS} from 'shared/config/retroFutureTheme'
+import {ContactForm} from "./ContactForm"
 
 export const ModalDialog = () => {
     const dialogData = usePlayerStore((s) => s.dialogData)
@@ -44,29 +45,35 @@ export const ModalDialog = () => {
             <h3 style={{ margin: '0 0 15px', fontSize: '21px', fontWeight: 700 }}>
                 {dialogData.title}
             </h3>
-            <p style={{ margin: '0 0 15px', fontSize: '15px', whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
-                {dialogData.text}
-            </p>
-            {dialogData.links && dialogData.links.length > 0 && (
-                <div>
-                    {dialogData.links.map((link, i) => (
-                        <a
-                            key={i}
-                            href={link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                display: 'block',
-                                color: COLORS.neonMagenta,
-                                fontSize: '11px',
-                                wordBreak: 'break-all',
-                                textShadow: `0 0 5px ${COLORS.neonMagenta}`,
-                            }}
-                        >
-                            {link}
-                        </a>
-                    ))}
-                </div>
+            {dialogData.type === 'contact' ? (
+                <ContactForm />
+                ) : (
+                <>
+                    <p style={{ margin: '0 0 15px', fontSize: '15px', whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
+                        {dialogData.text}
+                    </p>
+                    {dialogData.links && dialogData.links.length > 0 && (
+                        <div>
+                            {dialogData.links.map((link, i) => (
+                                <a
+                                    key={i}
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'block',
+                                        color: COLORS.neonMagenta,
+                                        fontSize: '11px',
+                                        wordBreak: 'break-all',
+                                        textShadow: `0 0 5px ${COLORS.neonMagenta}`,
+                                    }}
+                                >
+                                    {link}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </>
             )}
         </animated.div>
     )

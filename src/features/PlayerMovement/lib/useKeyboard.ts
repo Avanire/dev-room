@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 import {usePlayerStore} from 'entities/Player/model/usePlayerStore'
 import {clampPlayerPosition} from 'shared/lib/collision'
 
-const SPEED = 4 // единиц в секунду
+const SPEED = 4
 
 export const useKeyboard = () => {
     const setPosition = usePlayerStore((s) => s.setPosition)
@@ -11,10 +11,18 @@ export const useKeyboard = () => {
         const keys = new Set<string>()
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            keys.add(e.key.toLowerCase())
+            const key = e.key.toLowerCase()
+            if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
+                e.preventDefault()
+                keys.add(key)
+            }
         }
+
         const handleKeyUp = (e: KeyboardEvent) => {
-            keys.delete(e.key.toLowerCase())
+            const key = e.key.toLowerCase()
+            if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
+                keys.delete(key)
+            }
         }
 
         window.addEventListener('keydown', handleKeyDown)
@@ -30,10 +38,10 @@ export const useKeyboard = () => {
 
             let dx = 0
             let dz = 0
-            if (keys.has('w') || keys.has('arrowup')) dz -= 1
-            if (keys.has('s') || keys.has('arrowdown')) dz += 1
-            if (keys.has('a') || keys.has('arrowleft')) dx -= 1
-            if (keys.has('d') || keys.has('arrowright')) dx += 1
+            if (keys.has('arrowup')) dz -= 1
+            if (keys.has('arrowdown')) dz += 1
+            if (keys.has('arrowleft')) dx -= 1
+            if (keys.has('arrowright')) dx += 1
 
             if (dx !== 0 || dz !== 0) {
                 const len = Math.sqrt(dx * dx + dz * dz)
