@@ -2,6 +2,7 @@ import {Box, Cylinder} from '@react-three/drei'
 import {InteractableConfig} from 'shared/config/roomConfig'
 import {COLORS} from 'shared/config/retroFutureTheme'
 import ArcadeMachine from "entities/Interactable/ui/ArcadeMachine.tsx";
+import Bookshelf from "entities/Interactable/ui/Bookshelf.tsx";
 
 
 interface Props {
@@ -14,45 +15,8 @@ export const InteractableObject = ({ config }: Props) => {
 
     const renderObject = () => {
         switch (config.type) {
-            case 'bookshelf': {
-                const shelfLevels = [0.35, 0.7, 1.05];
-                const booksConfig: Array<Array<[number, number, number, number, string]>> = [
-                    [[-0.35, 0.08, 0.26, 0.22, COLORS.bookTwo], [-0.2, 0.05, 0.18, 0.18, COLORS.bookOne], [-0.1, 0.06, 0.2, 0.2, COLORS.bookThree]],
-                    [[0.42, 0.07, 0.28, 0.25, COLORS.bookOne], [0.3, 0.05, 0.2, 0.2, COLORS.bookThree], [0.2, 0.06, 0.22, 0.22, COLORS.bookTwo], [0.1, 0.05, 0.2, 0.2, COLORS.bookThree], [0, 0.06, 0.22, 0.22, COLORS.bookTwo]],
-                ];
-
-                return (
-                    <group position={[x, y, z]} rotation={[0, Math.PI / 2, 0]}>
-                        {/* Боковые стенки */}
-                        <Box args={[0.1, 1.2, 0.4]} position={[-0.55, 0, 0]}>
-                            <meshBasicMaterial color={COLORS.emissiveMagenta} />
-                        </Box>
-                        <Box args={[0.1, 1.2, 0.4]} position={[0.55, 0, 0]}>
-                            <meshBasicMaterial color={COLORS.emissiveMagenta} />
-                        </Box>
-
-                        {/* Полки */}
-                        {shelfLevels.map((h, i) => (
-                            <Box key={i} args={[1.0, 0.04, 0.4]} position={[0, h - 0.5, 0]}>
-                                <meshBasicMaterial color={COLORS.metalLight} />
-                            </Box>
-                        ))}
-
-                        {/* Книги по уровням */}
-                        {shelfLevels.map((levelHeight, levelIndex) =>
-                            booksConfig[levelIndex]?.map(([offsetX, thickness, height, depth, color], bookIndex) => (
-                                <Box
-                                    key={`book-${levelIndex}-${bookIndex}`}
-                                    args={[thickness, height, depth]}
-                                    position={[offsetX, levelHeight - 0.5 + height / 2, 0]}
-                                >
-                                    <meshBasicMaterial color={color} />
-                                </Box>
-                            ))
-                        )}
-                    </group>
-                );
-            }
+            case 'bookshelf':
+                return <Bookshelf x={x} y={y} z={z} rotation={[0, -Math.PI / 2, 0]} />;
             case 'desk':
                 return (
                     <group position={[x, y, z]}>
