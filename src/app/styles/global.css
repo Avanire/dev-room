@@ -61,3 +61,8 @@
 @keyframes neon-spin {
     to { transform: rotate(360deg); }
 }
+
+@keyframes progress-glow {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
