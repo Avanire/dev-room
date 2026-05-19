@@ -3,6 +3,7 @@ import ArcadeMachine from 'entities/Interactable/ui/ArcadeMachine.tsx';
 import Bookshelf from 'entities/Interactable/ui/Bookshelf.tsx';
 import Desk from 'entities/Interactable/ui/Desk.tsx';
 import DiplomaFrame from 'entities/Interactable/ui/DiplomaFrame.tsx';
+import Crystal from 'entities/Interactable/ui/Crystal.tsx';
 
 interface Props {
     config: InteractableConfig;
@@ -22,6 +23,8 @@ export const InteractableObject = ({ config }: Props) => {
                 return <DiplomaFrame x={x} y={y} z={z} rotation={[0, 0, 0]} />;
             case 'arcade':
                 return <ArcadeMachine position={[x, y, z]} />;
+            case 'artifact':
+                return <Crystal position={[x, y, z]} />;
             default:
                 return null;
         }

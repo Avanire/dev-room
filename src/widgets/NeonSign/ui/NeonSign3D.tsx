@@ -14,14 +14,15 @@ export const NeonSign3D = () => {
         <>
             <NeonText
                 text={'FRONTEND\n DEVELOPER'}
-                position={[-4.7, 1.7, -2.1]}
+                position={[-4.7, 2.7, -2.1]}
                 rotation={[0, Math.PI / 2, 0]}
                 emissiveColor={COLORS.neonCyan}
                 powerOn={powerOn}
             />
             <NeonText
                 text={'ANTON\n TATARINOV'}
-                position={[-3.7, 1.2, -4.7]}
+                position={[-4.7, 1.4, -2.1]}
+                rotation={[0, Math.PI / 2, 0]}
                 emissiveColor={COLORS.yellowCyberpunk}
                 powerOn={powerOn}
             />

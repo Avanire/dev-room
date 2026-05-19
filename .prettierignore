@@ -1,0 +1,50 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+build
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache
+.next
+.nyc_output
+
+# IDE files
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git
+.gitignore
+
+# Test coverage
+coverage
+.nyc_output
+
+# Storybook
+storybook-static
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# ESLint cache
+.eslintcache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Other
+*.log
