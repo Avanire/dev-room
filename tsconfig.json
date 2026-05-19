@@ -23,7 +23,8 @@
             "features/*": ["features/*"],
             "entities/*": ["entities/*"],
             "shared/*": ["shared/*"]
-        }
+        },
+        "ignoreDeprecations": "6.0"
     },
     "include": ["src"]
 }
