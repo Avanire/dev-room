@@ -1,7 +1,7 @@
-import {Box, Cylinder} from '@react-three/drei'
-import {COLORS} from 'shared/config/retroFutureTheme'
-import Sofa from "entities/Room/ui/Sofa.tsx";
-import CyberLamp from "entities/Room/ui/CyberLamp.tsx";
+import { Box, Cylinder } from '@react-three/drei';
+import { COLORS } from 'shared/config/retroFutureTheme';
+import Sofa from 'entities/Room/ui/Sofa.tsx';
+import CyberLamp from 'entities/Room/ui/CyberLamp.tsx';
 
 export const RoomDecoration = () => {
     return (
@@ -9,7 +9,11 @@ export const RoomDecoration = () => {
             {/* Голографическая картина на правой стене */}
             <group position={[-2, 1.7, -4.9]} rotation={[0, -Math.PI / 2, 0]}>
                 <Box args={[0.05, 1.2, 0.8]} position={[0, 0, 0]}>
-                    <meshStandardMaterial color={COLORS.metalLight} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial
+                        color={COLORS.metalLight}
+                        roughness={0.3}
+                        metalness={0.7}
+                    />
                 </Box>
                 <Box args={[0.03, 1.0, 0.6]} position={[0.02, 0, 0]}>
                     <meshStandardMaterial
@@ -25,7 +29,11 @@ export const RoomDecoration = () => {
             {/* Голографическая картина на левой стене */}
             <group position={[2.8, 1.6, 4.9]} rotation={[0, Math.PI / 2, 0]}>
                 <Box args={[0.05, 1.2, 0.8]} position={[0, 0, 0]}>
-                    <meshStandardMaterial color={COLORS.metalLight} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial
+                        color={COLORS.metalLight}
+                        roughness={0.3}
+                        metalness={0.7}
+                    />
                 </Box>
                 <Box args={[0.03, 1.0, 0.6]} position={[0.02, 0, 0]}>
                     <meshStandardMaterial
@@ -47,14 +55,31 @@ export const RoomDecoration = () => {
             {/* Журнальный столик перед диваном */}
             <group position={[-1.3, 0.2, 2.9]}>
                 {/* Ножки (4 шт.) */}
-                {[[-0.7, 0, -0.35], [0.7, 0, -0.35], [-0.7, 0, 0.35], [0.7, 0, 0.35]].map((pos, i) => (
-                    <Cylinder key={i} args={[0.04, 0.06, 0.4, 8]} position={[pos[0], pos[1], pos[2]]}>
-                        <meshStandardMaterial color={COLORS.surfaceMedium} roughness={0.4} metalness={0.8} />
+                {[
+                    [-0.7, 0, -0.35],
+                    [0.7, 0, -0.35],
+                    [-0.7, 0, 0.35],
+                    [0.7, 0, 0.35],
+                ].map((pos, i) => (
+                    <Cylinder
+                        key={i}
+                        args={[0.04, 0.06, 0.4, 8]}
+                        position={[pos[0], pos[1], pos[2]]}
+                    >
+                        <meshStandardMaterial
+                            color={COLORS.surfaceMedium}
+                            roughness={0.4}
+                            metalness={0.8}
+                        />
                     </Cylinder>
                 ))}
                 {/* Столешница */}
                 <Box args={[1.6, 0.04, 0.8]} position={[0, 0.2, 0]}>
-                    <meshStandardMaterial color={COLORS.surfaceLight} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial
+                        color={COLORS.surfaceLight}
+                        roughness={0.3}
+                        metalness={0.7}
+                    />
                 </Box>
                 {/* Голографическая поверхность */}
                 <Box args={[1.4, 0.02, 0.6]} position={[0, 0.22, 0]}>
@@ -104,5 +129,5 @@ export const RoomDecoration = () => {
                 </group>
             </group>
         </group>
-    )
-}
+    );
+};

@@ -1,105 +1,108 @@
-import {useMemo, useRef} from 'react'
-import {useFrame} from '@react-three/fiber'
-import * as THREE from 'three'
-import {RoundedBoxGeometry} from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
+import { useMemo, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 
 function useScreenAnimation() {
     // Создаём canvas и текстуру один раз (глобально для компонента)
-    const canvasRef = useRef<HTMLCanvasElement | null>(null)
-    const textureRef = useRef<THREE.CanvasTexture | null>(null)
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const textureRef = useRef<THREE.CanvasTexture | null>(null);
 
     // Инициализация
     // eslint-disable-next-line react-hooks/refs
     if (!canvasRef.current) {
-        const canvas = document.createElement('canvas')
-        canvas.width = 256
-        canvas.height = 224
-        canvasRef.current = canvas
-        const texture = new THREE.CanvasTexture(canvas)
-        texture.minFilter = THREE.LinearFilter
-        texture.magFilter = THREE.LinearFilter
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 224;
+        canvasRef.current = canvas;
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
         // eslint-disable-next-line react-hooks/refs
-        textureRef.current = texture
+        textureRef.current = texture;
     }
 
     // Анимация
     useFrame(({ clock }) => {
-        const canvas = canvasRef.current
-        const texture = textureRef.current
-        if (!canvas || !texture) return
+        const canvas = canvasRef.current;
+        const texture = textureRef.current;
+        if (!canvas || !texture) return;
 
-        const ctx = canvas.getContext('2d')
-        if (!ctx) return
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
 
-        const w = canvas.width
-        const h = canvas.height
-        const time = clock.elapsedTime
+        const w = canvas.width;
+        const h = canvas.height;
+        const time = clock.elapsedTime;
 
         // Тёмный фон с scanlines
-        ctx.fillStyle = '#0a0a14'
-        ctx.fillRect(0, 0, w, h)
+        ctx.fillStyle = '#0a0a14';
+        ctx.fillRect(0, 0, w, h);
 
         // Имитация пиксельной сетки
-        ctx.fillStyle = 'rgba(0,255,255,0.04)'
+        ctx.fillStyle = 'rgba(0,255,255,0.04)';
         for (let y = 0; y < h; y += 4) {
-            ctx.fillRect(0, y, w, 2)
+            ctx.fillRect(0, y, w, 2);
         }
 
         // Простая анимация "Пакмана"
-        const pacX = (Math.sin(time * 2) * 0.3 + 0.5) * w
-        const pacY = (Math.cos(time * 3) * 0.2 + 0.5) * h
-        ctx.fillStyle = '#ffff00'
-        ctx.beginPath()
-        const mouth = Math.abs(Math.sin(time * 8)) * 0.3
-        ctx.arc(pacX, pacY, 20, mouth, Math.PI * 2 - mouth)
-        ctx.lineTo(pacX, pacY)
-        ctx.fill()
+        const pacX = (Math.sin(time * 2) * 0.3 + 0.5) * w;
+        const pacY = (Math.cos(time * 3) * 0.2 + 0.5) * h;
+        ctx.fillStyle = '#ffff00';
+        ctx.beginPath();
+        const mouth = Math.abs(Math.sin(time * 8)) * 0.3;
+        ctx.arc(pacX, pacY, 20, mouth, Math.PI * 2 - mouth);
+        ctx.lineTo(pacX, pacY);
+        ctx.fill();
 
         // Несколько точек-призраков
-        const ghosts = ['#ff0000', '#00ffff', '#ff69b4']
+        const ghosts = ['#ff0000', '#00ffff', '#ff69b4'];
         ghosts.forEach((color, i) => {
-            const angle = time * 1.5 + (i * Math.PI * 2) / 3
-            const gx = w / 2 + Math.cos(angle) * 80
-            const gy = h / 2 + Math.sin(angle) * 60
-            ctx.fillStyle = color
-            ctx.beginPath()
-            ctx.arc(gx, gy, 8, 0, Math.PI * 2)
-            ctx.fill()
-            ctx.fillRect(gx - 6, gy, 12, 6)
-        })
+            const angle = time * 1.5 + (i * Math.PI * 2) / 3;
+            const gx = w / 2 + Math.cos(angle) * 80;
+            const gy = h / 2 + Math.sin(angle) * 60;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(gx, gy, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(gx - 6, gy, 12, 6);
+        });
 
         // Текст "INSERT COIN"
-        ctx.fillStyle = '#ffffff'
-        ctx.font = '12px monospace'
-        ctx.fillText('CREDIT 1', 10, 20)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '12px monospace';
+        ctx.fillText('CREDIT 1', 10, 20);
 
-        texture.needsUpdate = true
-    })
+        texture.needsUpdate = true;
+    });
 
     // eslint-disable-next-line react-hooks/refs
-    return textureRef.current
+    return textureRef.current;
 }
 
 export default function ArcadeMachine({
-                                          position,
-                                          rotation = [0, -Math.PI / 2, 0],
-                                      }: {
-    position: [number, number, number]
-    rotation?: [number, number, number]
+    position,
+    rotation = [0, -Math.PI / 2, 0],
+}: {
+    position: [number, number, number];
+    rotation?: [number, number, number];
 }) {
-    const screenTex = useScreenAnimation()
+    const screenTex = useScreenAnimation();
 
     // Геометрии, создаваемые один раз
-    const bodyGeom = useMemo(() => new RoundedBoxGeometry(1.0, 1.4, 0.8, 4, 0.05), [])
-    const baseGeom = useMemo(() => new RoundedBoxGeometry(1.08, 0.12, 0.88, 3, 0.03), [])
-    const sideGeom = useMemo(() => new RoundedBoxGeometry(0.04, 1.25, 0.7, 2, 0.01), [])
-    const frameGeom = useMemo(() => new RoundedBoxGeometry(0.84, 0.54, 0.06, 4, 0.03), [])
-    const screenGeom = useMemo(() => new THREE.PlaneGeometry(0.74, 0.44), [])
-    const buttonBaseGeom = useMemo(() => new THREE.CylinderGeometry(0.08, 0.09, 0.04, 16), [])
-    const buttonTopGeom = useMemo(() => new THREE.SphereGeometry(0.07, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), [])
-    const panelGeom = useMemo(() => new RoundedBoxGeometry(0.9, 0.14, 0.4, 3, 0.02), [])
-    const coinGeom = useMemo(() => new RoundedBoxGeometry(0.12, 0.18, 0.04, 2, 0.01), [])
-    const neonGeom = useMemo(() => new RoundedBoxGeometry(1.02, 0.04, 0.04, 2, 0.01), [])
+    const bodyGeom = useMemo(() => new RoundedBoxGeometry(1.0, 1.4, 0.8, 4, 0.05), []);
+    const baseGeom = useMemo(() => new RoundedBoxGeometry(1.08, 0.12, 0.88, 3, 0.03), []);
+    const sideGeom = useMemo(() => new RoundedBoxGeometry(0.04, 1.25, 0.7, 2, 0.01), []);
+    const frameGeom = useMemo(() => new RoundedBoxGeometry(0.84, 0.54, 0.06, 4, 0.03), []);
+    const screenGeom = useMemo(() => new THREE.PlaneGeometry(0.74, 0.44), []);
+    const buttonBaseGeom = useMemo(() => new THREE.CylinderGeometry(0.08, 0.09, 0.04, 16), []);
+    const buttonTopGeom = useMemo(
+        () => new THREE.SphereGeometry(0.07, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2),
+        []
+    );
+    const panelGeom = useMemo(() => new RoundedBoxGeometry(0.9, 0.14, 0.4, 3, 0.02), []);
+    const coinGeom = useMemo(() => new RoundedBoxGeometry(0.12, 0.18, 0.04, 2, 0.01), []);
+    const neonGeom = useMemo(() => new RoundedBoxGeometry(1.02, 0.04, 0.04, 2, 0.01), []);
 
     // Позиции для ножек и кнопок (кортежи)
     const legPositions: [number, number, number][] = [
@@ -107,13 +110,13 @@ export default function ArcadeMachine({
         [0.45, -0.25, 0.35],
         [-0.45, -0.25, -0.35],
         [0.45, -0.25, -0.35],
-    ]
+    ];
     const buttonPositions: [number, number, number][] = [
         [-0.3, 0.43, -0.22],
         [0, 0.43, -0.22],
         [0.3, 0.43, -0.22],
-    ]
-    const btnColors = ['#ff00ff', '#00ffff', '#00ff00']
+    ];
+    const btnColors = ['#ff00ff', '#00ffff', '#00ff00'];
 
     return (
         <group position={position} rotation={rotation}>
@@ -226,7 +229,12 @@ export default function ArcadeMachine({
                 </mesh>
                 <mesh position={[0, 0.03, 0.021]}>
                     <boxGeometry args={[0.08, 0.02, 0.01]} />
-                    <meshStandardMaterial color="#000000" roughness={0.1} metalness={0.1} emissive="#000000" />
+                    <meshStandardMaterial
+                        color="#000000"
+                        roughness={0.1}
+                        metalness={0.1}
+                        emissive="#000000"
+                    />
                 </mesh>
                 <mesh position={[0, -0.07, 0.03]}>
                     <cylinderGeometry args={[0.03, 0.03, 0.02, 8]} />
@@ -255,11 +263,21 @@ export default function ArcadeMachine({
             {/* Наклейки / декали */}
             <mesh position={[0.01, 0.75, -0.41]}>
                 <planeGeometry args={[0.5, 0.15]} />
-                <meshBasicMaterial color="#ffcc00" transparent opacity={0.8} side={THREE.DoubleSide} />
+                <meshBasicMaterial
+                    color="#ffcc00"
+                    transparent
+                    opacity={0.8}
+                    side={THREE.DoubleSide}
+                />
             </mesh>
             <mesh position={[0.01, 0.25, -0.41]}>
                 <planeGeometry args={[0.6, 0.1]} />
-                <meshBasicMaterial color="#aaaaaa" transparent opacity={0.7} side={THREE.DoubleSide} />
+                <meshBasicMaterial
+                    color="#aaaaaa"
+                    transparent
+                    opacity={0.7}
+                    side={THREE.DoubleSide}
+                />
             </mesh>
 
             {/* Вентиляционная решётка на задней стенке */}
@@ -272,5 +290,5 @@ export default function ArcadeMachine({
                 ))}
             </group>
         </group>
-    )
+    );
 }

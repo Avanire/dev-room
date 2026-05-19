@@ -1,21 +1,21 @@
-import {Html} from '@react-three/drei'
-import {animated, useSpring} from '@react-spring/web'
-import {usePlayerStore} from 'entities/Player/model/usePlayerStore'
-import {roomConfig} from 'shared/config/roomConfig'
-import {COLORS} from 'shared/config/retroFutureTheme'
+import { Html } from '@react-three/drei';
+import { animated, useSpring } from '@react-spring/web';
+import { usePlayerStore } from 'entities/Player/model/usePlayerStore';
+import { roomConfig } from 'shared/config/roomConfig';
+import { COLORS } from 'shared/config/retroFutureTheme';
 
 export const SpeechBubble = () => {
-    const dialogData = usePlayerStore((s) => s.dialogData)
-    const activeId = usePlayerStore((s) => s.activeInteractableId)
-    const activeObject = roomConfig.objects.find((o) => o.id === activeId)
+    const dialogData = usePlayerStore(s => s.dialogData);
+    const activeId = usePlayerStore(s => s.activeInteractableId);
+    const activeObject = roomConfig.objects.find(o => o.id === activeId);
 
     const styles = useSpring({
         opacity: dialogData ? 1 : 0,
         transform: dialogData ? 'scale(1)' : 'scale(0.9)',
         config: { tension: 200, friction: 20 },
-    })
+    });
 
-    if (!activeObject || !dialogData) return null
+    if (!activeObject || !dialogData) return null;
 
     return (
         <Html
@@ -68,9 +68,7 @@ export const SpeechBubble = () => {
                 >
                     {dialogData.title}
                 </h3>
-                <p style={{ margin: '0 0 8px', whiteSpace: 'pre-wrap' }}>
-                    {dialogData.text}
-                </p>
+                <p style={{ margin: '0 0 8px', whiteSpace: 'pre-wrap' }}>{dialogData.text}</p>
                 {dialogData.links?.map((link, i) => (
                     <a
                         key={i}
@@ -90,5 +88,5 @@ export const SpeechBubble = () => {
                 ))}
             </animated.div>
         </Html>
-    )
-}
+    );
+};

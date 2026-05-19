@@ -1,10 +1,10 @@
-import {Canvas} from '@react-three/fiber'
-import {Bloom, EffectComposer, Vignette} from '@react-three/postprocessing'
-import {ReactNode} from 'react'
-import {COLORS} from 'shared/config/retroFutureTheme'
+import { Canvas } from '@react-three/fiber';
+import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
+import { ReactNode } from 'react';
+import { COLORS } from 'shared/config/retroFutureTheme';
 
 interface WithR3FProps {
-    children: ReactNode
+    children: ReactNode;
 }
 
 export const WithR3F = ({ children }: WithR3FProps) => {
@@ -31,5 +31,5 @@ export const WithR3F = ({ children }: WithR3FProps) => {
                 <Vignette eskil={false} offset={0.1} darkness={1.1} />
             </EffectComposer>
         </Canvas>
-    )
-}
+    );
+};

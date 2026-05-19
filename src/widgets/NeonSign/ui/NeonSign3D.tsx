@@ -1,14 +1,14 @@
-import {useEffect, useState} from 'react'
-import {NeonText} from './NeonText'
-import {COLORS} from 'shared/config/retroFutureTheme'
+import { useEffect, useState } from 'react';
+import { NeonText } from './NeonText';
+import { COLORS } from 'shared/config/retroFutureTheme';
 
 export const NeonSign3D = () => {
-    const [powerOn, setPowerOn] = useState(false)
+    const [powerOn, setPowerOn] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => setPowerOn(true), 1000)
-        return () => clearTimeout(timer)
-    }, [])
+        const timer = setTimeout(() => setPowerOn(true), 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <>
@@ -52,5 +52,5 @@ export const NeonSign3D = () => {
                 powerOn={powerOn}
             />
         </>
-    )
-}
+    );
+};

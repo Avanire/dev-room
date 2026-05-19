@@ -1,10 +1,10 @@
-import {animated, useSpring} from '@react-spring/web'
-import {usePlayerStore} from 'entities/Player/model/usePlayerStore'
-import {COLORS} from 'shared/config/retroFutureTheme'
-import {ContactForm} from "./ContactForm"
+import { animated, useSpring } from '@react-spring/web';
+import { usePlayerStore } from 'entities/Player/model/usePlayerStore';
+import { COLORS } from 'shared/config/retroFutureTheme';
+import { ContactForm } from './ContactForm';
 
 export const ModalDialog = () => {
-    const dialogData = usePlayerStore((s) => s.dialogData)
+    const dialogData = usePlayerStore(s => s.dialogData);
 
     const styles = useSpring({
         opacity: dialogData ? 1 : 0,
@@ -12,9 +12,9 @@ export const ModalDialog = () => {
             ? 'translate(-50%, -50%) scale(1)'
             : 'translate(-50%, -50%) scale(0.9)',
         config: { tension: 200, friction: 20 },
-    })
+    });
 
-    if (!dialogData) return null
+    if (!dialogData) return null;
 
     return (
         <animated.div
@@ -47,9 +47,16 @@ export const ModalDialog = () => {
             </h3>
             {dialogData.type === 'contact' ? (
                 <ContactForm />
-                ) : (
+            ) : (
                 <>
-                    <p style={{ margin: '0 0 15px', fontSize: '15px', whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
+                    <p
+                        style={{
+                            margin: '0 0 15px',
+                            fontSize: '15px',
+                            whiteSpace: 'pre-wrap',
+                            lineHeight: 1.5,
+                        }}
+                    >
                         {dialogData.text}
                     </p>
                     {dialogData.links && dialogData.links.length > 0 && (
@@ -76,5 +83,5 @@ export const ModalDialog = () => {
                 </>
             )}
         </animated.div>
-    )
-}
+    );
+};

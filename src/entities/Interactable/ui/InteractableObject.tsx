@@ -1,12 +1,11 @@
-import {InteractableConfig} from 'shared/config/roomConfig'
-import ArcadeMachine from "entities/Interactable/ui/ArcadeMachine.tsx";
-import Bookshelf from "entities/Interactable/ui/Bookshelf.tsx";
-import Desk from "entities/Interactable/ui/Desk.tsx";
-import DiplomaFrame from "entities/Interactable/ui/DiplomaFrame.tsx";
-
+import { InteractableConfig } from 'shared/config/roomConfig';
+import ArcadeMachine from 'entities/Interactable/ui/ArcadeMachine.tsx';
+import Bookshelf from 'entities/Interactable/ui/Bookshelf.tsx';
+import Desk from 'entities/Interactable/ui/Desk.tsx';
+import DiplomaFrame from 'entities/Interactable/ui/DiplomaFrame.tsx';
 
 interface Props {
-    config: InteractableConfig
+    config: InteractableConfig;
 }
 
 export const InteractableObject = ({ config }: Props) => {
@@ -24,9 +23,9 @@ export const InteractableObject = ({ config }: Props) => {
             case 'arcade':
                 return <ArcadeMachine position={[x, y, z]} />;
             default:
-                return null
+                return null;
         }
-    }
+    };
 
-    return <>{renderObject()}</>
-}
+    return <>{renderObject()}</>;
+};

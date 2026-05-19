@@ -1,10 +1,10 @@
-import {floorTexture, wallTexture} from 'shared/config/textures'
+import { floorTexture, wallTexture } from 'shared/config/textures';
 
 const Room = () => {
-    const width = 12
-    const depth = 10
-    const height = 3
-    const wallThickness = 0.2
+    const width = 12;
+    const depth = 10;
+    const height = 3;
+    const wallThickness = 0.2;
 
     return (
         <group>
@@ -39,7 +39,7 @@ const Room = () => {
                 />
             </mesh>
         </group>
-    )
-}
+    );
+};
 
-export default Room
+export default Room;

@@ -1,7 +1,7 @@
-import {WithR3F} from './providers/with-r3f'
-import {DevRoom} from 'widgets/DevRoom/ui/DevRoom'
-import {ModalDialog} from 'features/SpeechBubble/ui/ModalDialog'
-import {LoaderOverlay} from "widgets/SceneLoader/ui/LoaderOverlay.tsx";
+import { WithR3F } from './providers/with-r3f';
+import { DevRoom } from 'widgets/DevRoom/ui/DevRoom';
+import { ModalDialog } from 'features/SpeechBubble/ui/ModalDialog';
+import { LoaderOverlay } from 'widgets/SceneLoader/ui/LoaderOverlay.tsx';
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
             </WithR3F>
             <ModalDialog />
         </>
-    )
+    );
 }
 
-export default App
+export default App;

@@ -1,35 +1,35 @@
-import {useRef, useState} from 'react'
-import emailjs from '@emailjs/browser'
-import {COLORS} from 'shared/config/retroFutureTheme'
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { COLORS } from 'shared/config/retroFutureTheme';
 
 export const ContactForm = () => {
-    const [subject, setSubject] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-    const [sent, setSent] = useState(false)
-    const [error, setError] = useState('')
-    const [sending, setSending] = useState(false)
+    const [subject, setSubject] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [sent, setSent] = useState(false);
+    const [error, setError] = useState('');
+    const [sending, setSending] = useState(false);
 
     // Honeypot - боты заполнят это поле, люди нет
-    const [honeypot, setHoneypot] = useState('')
-    const honeypotRef = useRef<HTMLInputElement>(null)
+    const [honeypot, setHoneypot] = useState('');
+    const honeypotRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setError('')
+        e.preventDefault();
+        setError('');
 
         // Проверка honeypot: если поле заполнено - молча завершаем "успехом"
         if (honeypot) {
             // Имитация задержки, чтобы бот не понял блокировку
-            setSending(true)
+            setSending(true);
             setTimeout(() => {
-                setSending(false)
-                setSent(true)
-            }, 2000)
-            return
+                setSending(false);
+                setSent(true);
+            }, 2000);
+            return;
         }
 
-        setSending(true)
+        setSending(true);
 
         try {
             await emailjs.send(
@@ -37,15 +37,15 @@ export const ContactForm = () => {
                 import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
                 { subject, email, message },
                 import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-            )
-            setSent(true)
+            );
+            setSent(true);
         } catch (err) {
-            setError('Ошибка отправки. Попробуйте позже.')
-            console.error('EmailJS error:', err)
+            setError('Ошибка отправки. Попробуйте позже.');
+            console.error('EmailJS error:', err);
         } finally {
-            setSending(false)
+            setSending(false);
         }
-    }
+    };
 
     return (
         <div style={{ width: '100%' }}>
@@ -54,15 +54,27 @@ export const ContactForm = () => {
                     Сообщение отправлено! Я скоро свяжусь с вами.
                 </p>
             ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <form
+                    onSubmit={handleSubmit}
+                    style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
+                >
                     {error && (
-                        <p style={{ color: COLORS.neonMagenta, fontSize: '10px', textShadow: `0 0 5px ${COLORS.neonMagenta}` }}>
+                        <p
+                            style={{
+                                color: COLORS.neonMagenta,
+                                fontSize: '10px',
+                                textShadow: `0 0 5px ${COLORS.neonMagenta}`,
+                            }}
+                        >
                             {error}
                         </p>
                     )}
 
                     {/* Скрытое honeypot-поле */}
-                    <div style={{ position: 'absolute', left: '-9999px', opacity: 0 }} aria-hidden="true">
+                    <div
+                        style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+                        aria-hidden="true"
+                    >
                         <label htmlFor="honeypot">Оставьте это поле пустым</label>
                         <input
                             ref={honeypotRef}
@@ -70,7 +82,7 @@ export const ContactForm = () => {
                             id="honeypot"
                             name="honeypot"
                             value={honeypot}
-                            onChange={(e) => setHoneypot(e.target.value)}
+                            onChange={e => setHoneypot(e.target.value)}
                             tabIndex={-1}
                             autoComplete="off"
                         />
@@ -82,7 +94,7 @@ export const ContactForm = () => {
                         <input
                             type="text"
                             value={subject}
-                            onChange={(e) => setSubject(e.target.value)}
+                            onChange={e => setSubject(e.target.value)}
                             required
                             disabled={sending}
                             style={{
@@ -101,11 +113,13 @@ export const ContactForm = () => {
                         />
                     </div>
                     <div>
-                        <label style={{ fontSize: '10px', color: COLORS.neonCyan }}>Email для связи</label>
+                        <label style={{ fontSize: '10px', color: COLORS.neonCyan }}>
+                            Email для связи
+                        </label>
                         <input
                             type="email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                             required
                             disabled={sending}
                             style={{
@@ -124,10 +138,12 @@ export const ContactForm = () => {
                         />
                     </div>
                     <div>
-                        <label style={{ fontSize: '10px', color: COLORS.neonCyan }}>Сообщение</label>
+                        <label style={{ fontSize: '10px', color: COLORS.neonCyan }}>
+                            Сообщение
+                        </label>
                         <textarea
                             value={message}
-                            onChange={(e) => setMessage(e.target.value)}
+                            onChange={e => setMessage(e.target.value)}
                             required
                             rows={3}
                             disabled={sending}
@@ -149,16 +165,18 @@ export const ContactForm = () => {
                     </div>
 
                     {sending ? (
-                        <div style={{
-                            alignSelf: 'flex-end',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            fontFamily: 'Orbitron, monospace',
-                            fontSize: '11px',
-                            color: COLORS.neonCyan,
-                            textShadow: `0 0 8px ${COLORS.neonCyan}`,
-                        }}>
+                        <div
+                            style={{
+                                alignSelf: 'flex-end',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                fontFamily: 'Orbitron, monospace',
+                                fontSize: '11px',
+                                color: COLORS.neonCyan,
+                                textShadow: `0 0 8px ${COLORS.neonCyan}`,
+                            }}
+                        >
                             <span className="neon-spinner" />
                             Отправка...
                         </div>
@@ -179,13 +197,13 @@ export const ContactForm = () => {
                                 transition: 'all 0.3s',
                                 alignSelf: 'flex-end',
                             }}
-                            onMouseOver={(e) => {
-                                e.currentTarget.style.background = COLORS.neonMagenta
-                                e.currentTarget.style.color = '#000'
+                            onMouseOver={e => {
+                                e.currentTarget.style.background = COLORS.neonMagenta;
+                                e.currentTarget.style.color = '#000';
                             }}
-                            onMouseOut={(e) => {
-                                e.currentTarget.style.background = 'transparent'
-                                e.currentTarget.style.color = COLORS.neonMagenta
+                            onMouseOut={e => {
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.color = COLORS.neonMagenta;
                             }}
                         >
                             Отправить
@@ -194,5 +212,5 @@ export const ContactForm = () => {
                 </form>
             )}
         </div>
-    )
-}
+    );
+};

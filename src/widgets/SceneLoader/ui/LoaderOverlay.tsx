@@ -1,16 +1,16 @@
-import {useEffect, useState} from 'react'
-import {COLORS} from 'shared/config/retroFutureTheme'
+import { useEffect, useState } from 'react';
+import { COLORS } from 'shared/config/retroFutureTheme';
 
 export const LoaderOverlay = () => {
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(true);
 
     useEffect(() => {
         // Минимальная задержка для плавности, затем скрываем
-        const timer = setTimeout(() => setVisible(false), 1200)
-        return () => clearTimeout(timer)
-    }, [])
+        const timer = setTimeout(() => setVisible(false), 1200);
+        return () => clearTimeout(timer);
+    }, []);
 
-    if (!visible) return null
+    if (!visible) return null;
 
     return (
         <div
@@ -26,7 +26,7 @@ export const LoaderOverlay = () => {
                 fontFamily: '"Orbitron", monospace',
                 color: COLORS.neonCyan,
                 textShadow: `0 0 10px ${COLORS.neonCyan}`,
-                pointerEvents: 'all',   // блокирует взаимодействие с Canvas
+                pointerEvents: 'all', // блокирует взаимодействие с Canvas
             }}
         >
             <div
@@ -61,9 +61,7 @@ export const LoaderOverlay = () => {
                     }}
                 />
             </div>
-            <div style={{ fontSize: '12px', marginTop: '10px', opacity: 0.7 }}>
-                LOADING
-            </div>
+            <div style={{ fontSize: '12px', marginTop: '10px', opacity: 0.7 }}>LOADING</div>
         </div>
-    )
-}
+    );
+};
