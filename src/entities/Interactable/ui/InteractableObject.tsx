@@ -4,6 +4,7 @@ import Bookshelf from 'entities/Interactable/ui/Bookshelf.tsx';
 import Desk from 'entities/Interactable/ui/Desk.tsx';
 import DiplomaFrame from 'entities/Interactable/ui/DiplomaFrame.tsx';
 import Crystal from 'entities/Interactable/ui/Crystal.tsx';
+import GoldenTrophy from 'entities/Interactable/ui/GoldenTrophy.tsx';
 
 interface Props {
     config: InteractableConfig;
@@ -25,6 +26,8 @@ export const InteractableObject = ({ config }: Props) => {
                 return <ArcadeMachine position={[x, y, z]} />;
             case 'artifact':
                 return <Crystal position={[x, y, z]} />;
+            case 'trophy':
+                return <GoldenTrophy position={[x, y, z]} rotation={[0, Math.PI * 2, 0]} />;
             default:
                 return null;
         }

@@ -17,7 +17,8 @@ export interface InteractableConfig {
         | 'window'
         | 'desk'
         | 'arcade'
-        | 'artifact';
+        | 'artifact'
+        | 'trophy';
     position: [number, number, number];
     radius: number;
     dialog: DialogData;
@@ -108,7 +109,7 @@ export const roomConfig = {
         {
             id: 'crystal_superpower',
             type: 'artifact',
-            position: [-4.5, -4.5, 0.1],
+            position: [6, 1.2, 1.2],
             radius: 1.5,
             dialog: {
                 title: 'Управляю технической неопределённостью',
@@ -117,9 +118,24 @@ export const roomConfig = {
                     'и довожу их до работающего результата.\n\n' +
                     'Это не везение, а системный навык: входить в хаос, структурировать его ' +
                     'и находить решение, когда карты нет.\n\n' +
-                    'Сервис СберБанк Онлайн Pro за 1 месяц вместо квартала, ' +
+                    'Сервис в СберБанк Онлайн Pro за 1 месяц вместо квартала, ' +
                     'миграция стейт-менеджмента без документации, ' +
                     'full-stack инфраструктура на VPS с нуля — это всё про него.',
+            },
+        },
+        {
+            id: 'trophy_achievements',
+            type: 'trophy',
+            position: [4, 5.1, 1.2],
+            radius: 2.0,
+            dialog: {
+                title: 'Доказано цифрами',
+                text:
+                    '🏆 Запуск сервиса в СберБанк Онлайн Pro — за 1 месяц (вместо 3)\n' +
+                    '🏆 Сокращение кодовой базы — на 40% миграцией на Effector\n' +
+                    '🏆 Ускорение разработки фич — на 25% рефакторингом\n' +
+                    '🏆 Full-stack интернет-магазин — с нуля за 1.5 месяца\n' +
+                    '🏆 Рост производительности бэкенда — +30% в ITB Company',
             },
         },
     ] as InteractableConfig[],

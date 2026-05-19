@@ -52,6 +52,20 @@ export const NeonSign3D = () => {
                 emissiveColor={COLORS.hologram}
                 powerOn={powerOn}
             />
+            <NeonText
+                text="ACHIEVEMENT"
+                position={[3.9, 2, 4.9]}
+                rotation={[0, Math.PI * 2, 0]}
+                emissiveColor={COLORS.neonOrange}
+                powerOn={powerOn}
+            />
+            <NeonText
+                text="SUPER POWER"
+                position={[6.2, 2, 2]}
+                rotation={[0, Math.PI / 2, 0]}
+                emissiveColor={COLORS.hologram}
+                powerOn={powerOn}
+            />
         </>
     );
 };

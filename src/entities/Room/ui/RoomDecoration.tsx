@@ -26,28 +26,8 @@ export const RoomDecoration = () => {
                 </Box>
             </group>
 
-            {/* Голографическая картина на левой стене */}
-            <group position={[2.8, 1.6, 4.9]} rotation={[0, Math.PI / 2, 0]}>
-                <Box args={[0.05, 1.2, 0.8]} position={[0, 0, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.metalLight}
-                        roughness={0.3}
-                        metalness={0.7}
-                    />
-                </Box>
-                <Box args={[0.03, 1.0, 0.6]} position={[0.02, 0, 0]}>
-                    <meshStandardMaterial
-                        color={COLORS.hologram}
-                        emissive={COLORS.neonCyan}
-                        emissiveIntensity={0.3}
-                        transparent
-                        opacity={0.5}
-                    />
-                </Box>
-            </group>
-
             {/* Лампа */}
-            <CyberLamp x={5} y={1.3} z={4.3} />
+            <CyberLamp x={-4} y={1.3} z={-4.3} />
 
             {/* Диван */}
             <Sofa x={-1} y={0.3} z={4.7} rotation={[0, Math.PI, 0]} />
