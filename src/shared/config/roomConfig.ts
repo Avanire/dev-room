@@ -103,7 +103,7 @@ export const roomConfig = {
             dialog: {
                 title: 'Обсудим взаимную ценность',
                 text: 'Я открыт к разговору о задачах и зарплате. Напишите мне напрямую — давайте сверим ожидания.',
-                type: 'contact',
+                links: ['mailto:tosha-t@mail.ru', 'https://t.me/skir000'],
             },
         },
         {
